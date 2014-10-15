@@ -30,6 +30,7 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
  * 인당 7000원
  * 보쌈정식
  * 점심에 가면 전 제공
+ * [위치](http://map.naver.com/?dlevel=12&lat=37.5052182&lng=127.0476722&query=7ISc7Jq47Yq567OE7IucIOqwleuCqOq1rCDsl63sgrwx64%2BZIDcwNS0xNQ%3D%3D&type=ADDRESS&tab=1&enc=b64)
 
 중식
 ----
