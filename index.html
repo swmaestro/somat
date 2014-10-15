@@ -16,6 +16,8 @@
     <div id="chinese"></div>
     <h3>일식</h3>
     <div id="japanese"></div>
+    <h3>음주</h3>
+    <div id="drink"></div>
     <script>
     $.ajax({
         url: './README.md',
@@ -40,7 +42,8 @@
             mentoring: parseMatList(/멘토링때 식사 하기 적당한곳\s*----\s*((?:.|\r?\n)+)\s+한식\s*----/.exec(readme)[1]),
             korean: parseMatList(/한식\s*----\s*((?:.|\r?\n)+)\s+중식\s*----/.exec(readme)[1]),
             chinese: parseMatList(/중식\s*----\s*((?:.|\r?\n)+)\s+일식\s*----/.exec(readme)[1]),
-            japanese: parseMatList(/일식\s*----\s*((?:.|\r?\n)+)\s+# Contributors/.exec(readme)[1])
+            japanese: parseMatList(/일식\s*----\s*((?:.|\r?\n)+)\s+음주/.exec(readme)[1]),
+            drink: parseMatList(/음주\s*----\s*((?:.|\r?\n)+)\s+# Contributors/.exec(readme)[1])
         }
     }
     function parseMatList(matListChunk) {
