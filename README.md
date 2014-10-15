@@ -91,3 +91,4 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
 [![item4](https://avatars0.githubusercontent.com/u/559952?v=2&s=100)](https://github.com/item4)
 [![raonism](https://avatars0.githubusercontent.com/u/3397808?v=2&s=100)](https://github.com/raonism)
 [![dobestan](https://avatars0.githubusercontent.com/u/4688315?v=2&s=100)](https://github.com/dobestan)
+[![disjukr](https://avatars0.githubusercontent.com/u/690661?v=2&s=100)](https://github.com/disjukr)
