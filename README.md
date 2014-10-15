@@ -42,5 +42,5 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
 
 # Contributors
 
-[![darjeeling](https://avatars0.githubusercontent.com/u/52967?v=2&s=400)](https://github.com/darjeeling)
-[![dobestan](https://avatars0.githubusercontent.com/u/4688315?v=2&s=460)](https://github.com/dobestan)
+[![darjeeling](https://avatars0.githubusercontent.com/u/52967?v=2&s=100)](https://github.com/darjeeling)
+[![dobestan](https://avatars0.githubusercontent.com/u/4688315?v=2&s=100)](https://github.com/dobestan)
