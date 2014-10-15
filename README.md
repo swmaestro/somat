@@ -4,6 +4,7 @@ somat
 dining recommends for software maestro
 
 소프트웨어 마에스트로 멘티들을 위한 맛집 일람입니다. Pull Request 는 언제든 받습니다.
+귀찬으면 issue 로 적당히 만들면 알아서 머지 해드리겠습니다. 
 
 이 문서는 다음과 같이 기록합니다.
 
