@@ -37,6 +37,21 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
  * [리뷰](http://blog.naver.com/PostView.nhn?blogId=zzeuyoung&logNo=130166802858),[리뷰2](http://blog.daum.net/_blog/BlogTypeView.do?blogid=0koTF&articleno=4&_bloghome_menu=recenttext) 
  * 한신인터밸리지하 1층
 
+
+한식
+---
+* 찌개집
+ * 가격 추가 요망
+ * 김치찌개만 판다. 계란말이, 고등어 구이등의 서브메뉴도 판매한다.
+ * 테이블 위에서 큰 냄비에 끓여서 개인 식기에 덜어먹는 방식. 
+ * 줄서서 기다리다가 들어가면 서브메뉴를 서비스로 제공한다.
+ * 위치: [두레국수](http://maps.naver.com/?dlevel=12&pinType=site&pinId=18394397&x=127.0439520&y=37.5048890&enc=b64) 근방에 있다.
+* 두레국수
+ * 인당 6000원대
+ * 두레국수라고 하는 자체 육수의 국수와 비빔국수, 비빔밥등을 판매한다.
+ * 다른 면은 모르겠으나 두레국수의 국물은 매우 취향을 타니 주의.
+ * [위치](http://maps.naver.com/?dlevel=12&pinType=site&pinId=18394397&x=127.0439520&y=37.5048890&enc=b64)
+
 중식
 ----
 * 미친면
