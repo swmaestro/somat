@@ -31,6 +31,11 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
  * 보쌈정식
  * 점심에 가면 전 제공
  * [위치](http://map.naver.com/?dlevel=12&lat=37.5052182&lng=127.0476722&query=7ISc7Jq47Yq567OE7IucIOqwleuCqOq1rCDsl63sgrwx64%2BZIDcwNS0xNQ%3D%3D&type=ADDRESS&tab=1&enc=b64)
+* 내 여자를 부탁해
+ * 인당 8000 ~ 10000원선
+ * 먹으면 건강해지는 기분이다. 김창준 멘토님 추천. 미소삼겹라이스 추천
+ * [리뷰](http://blog.naver.com/PostView.nhn?blogId=zzeuyoung&logNo=130166802858),[리뷰2](http://blog.daum.net/_blog/BlogTypeView.do?blogid=0koTF&articleno=4&_bloghome_menu=recenttext) 
+ * 한신인터밸리지하 1층
 
 중식
 ----
@@ -40,7 +45,17 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
 일식
 ----
 
-# Contributors
+* 탄
+ * 인당 6000원대
+ * 카츠동, 돈카츠등을 파는 이자카야. 식사는 가능한데 날에 따라 사람이 많아 시끄러울 수 있음.
+ * [위치](http://maps.naver.com/?dlevel=12&pinType=site&pinId=20742811&x=127.0470567&y=37.5054266&enc=b64)
+* 나무
+ * 인당 10000원대
+ * 식사가 있긴 하지만 분위기부터 전체적으로 술집이다. 멘토링을 하기엔 매우 시끄럽다.
+ * 위치: 네이버 지도에 안나온다. 근처에 [CU](http://maps.naver.com/?dlevel=12&pinType=site&pinId=18584892&x=127.0477749&y=37.5056334&enc=b64)가 있다.
+
+Contributors
+----
 
 [![darjeeling](https://avatars0.githubusercontent.com/u/52967?v=2&s=100)](https://github.com/darjeeling)
 [![dobestan](https://avatars0.githubusercontent.com/u/4688315?v=2&s=100)](https://github.com/dobestan)
