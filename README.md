@@ -27,6 +27,12 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
  * 불백정식(플레인메뉴)를 시키면 불고기백반, 된장찌개, 계란찜, 계란프라이 제공
  * 치즈 사리 추가해먹으면 꿀맛
  * 일요일 영업 안함
+* 내 여자를 부탁해
+ * 인당 8000 ~ 10000원선
+ * 먹으면 건강해지는 기분이다. 김창준 멘토님 추천. 미소삼겹라이스 추천
+ * [리뷰](http://blog.naver.com/PostView.nhn?blogId=zzeuyoung&logNo=130166802858),[리뷰2](http://blog.daum.net/_blog/BlogTypeView.do?blogid=0koTF&articleno=4&_bloghome_menu=recenttext) 
+ * 한신인터밸리지하 1층
+
 
 중식
 ----
