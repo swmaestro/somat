@@ -85,9 +85,23 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
  * 식사가 있긴 하지만 분위기부터 전체적으로 술집이다. 멘토링을 하기엔 매우 시끄럽다.
  * 위치: 네이버 지도에 안나온다. 근처에 [CU](http://maps.naver.com/?dlevel=12&pinType=site&pinId=18584892&x=127.0477749&y=37.5056334&enc=b64)가 있다.
 
+
+
+음주
+----
+* 포차골
+  * 안주에 따라 다르지만 15,000원에서 25,000원 선.
+  * 이 근방에 잘 없는 새벽 다섯시까지 운영하는 술집. 특히 밤 늦게 가면 손님이 별로 없어서 두런두런 이야기 하기 좋다.
+  * 약간 복고풍 분위기. 흘러 나오는 노래도 한 때 히트쳤던 가요들이 주를 이룸.
+  * 돈이 없으면 감자튀김을 시키면.. 싸고 양도 많고 좋다.
+  * 이 곳의 트레이트 마크는 [소맥타워](http://postfiles5.naver.net/20140827_148/zchvglqmse_1409119656383jgPqd_JPEG/%BC%D2%B8%C6%C5%B8%BF%F6.jpg?type=w1)! 소맥타워 세트를 시키면 주는데, 소주 한 병에 맥주 두 병이 들어가며 정수기 처럼 따라 마실 수 있다. 내부에는 얼음통이 들어가 있어서 시원함을 유지시켜준다!
+  * [위치](http://map.naver.com/?dlevel=13&lat=37.5047442&lng=127.0460563&query=7ISc7Jq47Yq567OE7IucIOqwleuCqOq1rCDsl63sgrzrj5kgNzA0LTU0&type=ADDRESS&tab=1&enc=b64)
+
+
 # Contributors
 
 [![darjeeling](https://avatars0.githubusercontent.com/u/52967?v=2&s=100)](https://github.com/darjeeling)
 [![item4](https://avatars0.githubusercontent.com/u/559952?v=2&s=100)](https://github.com/item4)
 [![raonism](https://avatars0.githubusercontent.com/u/3397808?v=2&s=100)](https://github.com/raonism)
 [![dobestan](https://avatars0.githubusercontent.com/u/4688315?v=2&s=100)](https://github.com/dobestan)
+[![LyuGGang](https://avatars0.githubusercontent.com/u/5120987?v=2&s=100)](https://github.com/LyuGGang)
