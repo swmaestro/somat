@@ -49,7 +49,7 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
 
 
 한식
----
+----
 * 찌개집
  * 가격 추가 요망
  * 김치찌개만 판다. 계란말이, 고등어 구이등의 서브메뉴도 판매한다.
@@ -105,3 +105,4 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
 [![raonism](https://avatars0.githubusercontent.com/u/3397808?v=2&s=100)](https://github.com/raonism)
 [![dobestan](https://avatars0.githubusercontent.com/u/4688315?v=2&s=100)](https://github.com/dobestan)
 [![LyuGGang](https://avatars0.githubusercontent.com/u/5120987?v=2&s=100)](https://github.com/LyuGGang)
+[![disjukr](https://avatars0.githubusercontent.com/u/690661?v=2&s=100)](https://github.com/disjukr)

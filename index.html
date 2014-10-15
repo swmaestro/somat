@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>somat</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+    <h1>Somat</h1>
+    <h2>소프트웨어 마에스트로 멘티들을 위한 맛집 일람</h2>
+    <h3>멘토링때 식사 하기 적당한곳</h3>
+    <div id="mentoring"></div>
+    <h3>한식</h3>
+    <div id="korean"></div>
+    <h3>중식</h3>
+    <div id="chinese"></div>
+    <h3>일식</h3>
+    <div id="japanese"></div>
+    <h3>음주</h3>
+    <div id="drink"></div>
+    <script>
+    $.ajax({
+        url: './README.md',
+        complete: function (data) {
+            var information = parse(data.responseText);
+            console.log(information);
+            $.each(information, function (type, matList) {
+                var $type = $('#' + type);
+                $.each(matList, function (_, mat) {
+                    var $matName = $('<h4 class="mat-name">').text(mat.name);
+                    var $matFeatureList = $('<ul class="mat-feature-list">');
+                    $.each(mat.featureList, function (_, feature) {
+                        $matFeatureList.append($('<li class="mat-feature">').html(feature));
+                    });
+                    $type.append($('<div class="mat">').append($matName, $matFeatureList));
+                });
+            });
+        }
+    });
+    function parse(readme) {
+        return {
+            mentoring: parseMatList(/멘토링때 식사 하기 적당한곳\s*----\s*((?:.|\r?\n)+)\s+한식\s*----/.exec(readme)[1]),
+            korean: parseMatList(/한식\s*----\s*((?:.|\r?\n)+)\s+중식\s*----/.exec(readme)[1]),
+            chinese: parseMatList(/중식\s*----\s*((?:.|\r?\n)+)\s+일식\s*----/.exec(readme)[1]),
+            japanese: parseMatList(/일식\s*----\s*((?:.|\r?\n)+)\s+음주/.exec(readme)[1]),
+            drink: parseMatList(/음주\s*----\s*((?:.|\r?\n)+)\s+# Contributors/.exec(readme)[1])
+        }
+    }
+    function parseMatList(matListChunk) {
+        var chunkList = matListChunk.trim().split(/(?:^|\r?\n)\* /g);
+        Array.prototype.shift.call(chunkList); // remove first blank string
+        return $.map(chunkList, function (chunk) {
+            var featureList = chunk.split(/\r?\n/g);
+            return {
+                name: featureList.shift(),
+                featureList: featureList.map(function (feature) {
+                    return parseFeature(feature);
+                })
+            };
+        });
+    }
+    function parseFeature(feature) {
+        feature = feature.substr(3); // cut ' * '
+        return feature.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
+    }
+    </script>
+</body>
+</html>
