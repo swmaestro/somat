@@ -45,8 +45,10 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
  * 사실 그냥 일반 찜닭은 봉추찜닭보다 맛이 덜하고, 치즈가 들어간 메뉴를 먹어야 그 진수를 느낄 수 있음. 특히 반반찜닭을 시키면 주는 딥 치즈 소스..?가 기가 맥힘. 계란밥을 시키길 추천.
  * 평일 점심에는 두당 8,000원에 일반 찜닭 런치를 먹을 수 있음.
  * [위치](http://map.naver.com/?mid=bl0111304392)
- 
-
+* The진국
+ * 인당 6500 ~ 8000원선
+ * 진한 사골 육수와 고기에 김치 하나 얹어먹으면,,
+ * [위치](http://map.naver.com/?dlevel=12&pinType=site&pinId=33028258&x=127.0454808&y=37.5042803&enc=b64)
 
 한식
 ----
@@ -106,3 +108,5 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
 [![dobestan](https://avatars0.githubusercontent.com/u/4688315?v=2&s=100)](https://github.com/dobestan)
 [![LyuGGang](https://avatars0.githubusercontent.com/u/5120987?v=2&s=100)](https://github.com/LyuGGang)
 [![disjukr](https://avatars0.githubusercontent.com/u/690661?v=2&s=100)](https://github.com/disjukr)
+[![wikibootup](https://avatars2.githubusercontent.com/u/6479173?v=2&s=100)](https://github.com/wikibootup)
+
