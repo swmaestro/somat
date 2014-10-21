@@ -100,6 +100,11 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
  * 맥딜리버리를 시키면 2시간쯤 걸린다. 걸어가서 사오는게 훨씬 빠르다.
  * 포장을 시키면 빨대를 안준다. 까먹지 말고 챙겨야 한다.
  * [위치](http://maps.naver.com/?dlevel=12&pinType=site&pinId=19331864&x=127.0470678&y=37.5035341&enc=b64)
+* KFC
+* 버거킹
+ * 조금 멀다. (걸어서 10분 )
+ * [위치](http://maps.naver.com/?dlevel=12&lat=37.5032073&lng=127.0493208&query=7ISc7Jq47Yq567OE7IucIOqwleuCqOq1rCDshKDrponroZwgNDI5&type=ADDRESS&tab=1&enc=b64)
+* 롯데리아
 
 
 음주
