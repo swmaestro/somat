@@ -106,6 +106,13 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
  * [위치](http://maps.naver.com/?dlevel=12&lat=37.5032073&lng=127.0493208&query=7ISc7Jq47Yq567OE7IucIOqwleuCqOq1rCDshKDrponroZwgNDI5&type=ADDRESS&tab=1&enc=b64)
 * 롯데리아
 
+분식
+----
+* 강남옛날돈까스 즉석떡볶이
+	* 3인 기준 1인 6000원대
+	* 3인 기준 추천메뉴는 떡볶이[(사진)](http://i.imgur.com/NEvxOhK.jpg) + 돈까스 곱빼기[(사진)](http://i.imgur.com/irINGvw.jpg)
+	* 돈까스도 팔고 떡볶이도 판다
+	* 위치: 네이버 지도에 안나온다. 1층에 [두레국수](http://map.naver.com/?dlevel=12&pinType=site&pinId=18394397&x=127.0439520&y=37.5048890&enc=b64)가 있다.
 
 음주
 ----
@@ -127,4 +134,4 @@ issue 로 적당히 만들어도 알아서 머지 해드리겠습니다.
 [![LyuGGang](https://avatars0.githubusercontent.com/u/5120987?v=2&s=100)](https://github.com/LyuGGang)
 [![disjukr](https://avatars0.githubusercontent.com/u/690661?v=2&s=100)](https://github.com/disjukr)
 [![wikibootup](https://avatars2.githubusercontent.com/u/6479173?v=2&s=100)](https://github.com/wikibootup)
-
+[![devholic](https://avatars1.githubusercontent.com/u/6194958?v=2&s=100)](https://github.com/devholic)
