@@ -95,7 +95,7 @@
         var zoomControl = new daum.maps.ZoomControl();
         map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
         var jo, filtered; // json data룰 저장할 변수
-        $.getJSON("https://cdn.rawgit.com/devholic/somat/gh-pages/somat.json", function(data) {
+        $.getJSON("https://raw.githubusercontent.com/devholic/somat/gh-pages/somat.json", function(data) {
             jo = data;
             updateMarker(jo);
         });
@@ -106,6 +106,7 @@
                 r.title = d.restaurant[k].name;
                 r.latlng = new daum.maps.LatLng(d.restaurant[k].y,d.restaurant[k].x);
                 dat.push(r);
+                console.log(r.title);
             }
             for (var i = 0; i < dat.length; i ++) {
                 // 마커를 생성합니다
