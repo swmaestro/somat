@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>somat</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="somat.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">somat</a>
+                </li>
+                <div style="height:1px;width:100%;background:#333"></div>
+                <li>
+                    <a href="#all">모두보기</a>
+                </li>
+                <li>
+                    <a href="#korean">한식</a>
+                </li>
+                <li>
+                    <a href="#chinese">중식</a>
+                </li>
+                <li>
+                    <a href="#japanese">일식</a>
+                </li>
+                <li>
+                    <a href="#eng">양식</a>
+                </li>
+                <li>
+                    <a href="#snack">분식</a>
+                </li>
+                <li>
+                    <a href="#etc">기타</a>
+                </li>
+                <div style="height:1px;width:100%;background:#333;margin-bottom:1em"></div>
+                <div>
+                    <p class="tag-title">데이터 소스</p>
+                    <p class="tag-group">         
+                    <a class="tag" href="#somat">#somat</a>
+                    <a class="tag" href="#baedong">#배동여지도</a>
+                    </p>
+                    <p class="tag-title">가격대</p>
+                    <p class="tag-group">         
+                    <a class="tag" href="#price-high">#비싼</a>   
+                    <a class="tag" href="#price">#보통</a>   
+                    <a class="tag" href="#price-cheap">#싼</a>
+                    </p>
+                    <p class="tag-title">맛</p>
+                    <p class="tag-group">         
+                    <a class="tag" href="#taste-spicy">#매운</a>
+                    <a class="tag" href="#taste-sweet">#달콤한</a>
+                    </p>
+                </div>
+            </ul>
+        </div>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div id="map" style="width:100%;height:50%;"></div>
+            <div id="query_result" class="fill">
+                <div class="no-content"><h2>표시할 음식점이 없어요 :(</h2></div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <script type="text/javascript" src="https://apis.daum.net/maps/maps3.js?apikey=8d92633e25ffd8778cdc30f6e52dbd60"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        var container = document.getElementById('map');
+        var options = {
+            center: new daum.maps.LatLng(37.503682, 127.044851),
+            level: 4
+        };
+        var map = new daum.maps.Map(container, options);
+        // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+        var mapTypeControl = new daum.maps.MapTypeControl();
+        // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+        // daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+        map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+        var zoomControl = new daum.maps.ZoomControl();
+        map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+    </script>
+</body>
+
+</html>
