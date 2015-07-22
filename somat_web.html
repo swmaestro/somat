@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ko">
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -96,6 +94,28 @@
         // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
         var zoomControl = new daum.maps.ZoomControl();
         map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+        var jo, filtered; // json data룰 저장할 변수
+        $.getJSON("https://cdn.rawgit.com/devholic/somat/gh-pages/somat.json", function(data) {
+            jo = data;
+            updateMarker(jo);
+        });
+        function updateMarker(d){
+            var dat = new Array();
+            for(var k in d.restaurant) {
+                var r = new Object();
+                r.title = d.restaurant[k].name;
+                r.latlng = new daum.maps.LatLng(d.restaurant[k].y,d.restaurant[k].x);
+                dat.push(r);
+            }
+            for (var i = 0; i < dat.length; i ++) {
+                // 마커를 생성합니다
+                var marker = new daum.maps.Marker({
+                    map: map, // 마커를 표시할 지도
+                    position: dat[i].latlng, // 마커를 표시할 위치
+                    title : dat[i].title // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                });
+            }
+        }
     </script>
 </body>
 
