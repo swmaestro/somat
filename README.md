@@ -1,11 +1,7 @@
 # somalife
-## dining recommends for software maestro
 
-* swmaestro/somat 프로젝트와 배동여지도 데이터를 기반으로 만들었습니다.
-* 웹사이트를 만들었습니다. 
-	* [http://somalife.plusquare.com](http://somat.plusquare.com)
-* 소프트웨어 마에스트로 멘티들을 위한 맛집 일람입니다.  
-* Pull Request 는 언제든 받습니다.
+* [swmaestro/somat](https://github.com/swmaestro/somat) 프로젝트와 D.CAMP의[배동여지도](http://dcamp.kr/contents/views/188) 데이터를 기반으로 만들었습니다.
+* Pull Request 는 언제나 환영합니다.
 
 # Data
 

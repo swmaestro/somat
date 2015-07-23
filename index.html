@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>somalife</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link href="./somat.css" rel="stylesheet">
+    <link href="./somalife.css" rel="stylesheet">
 </head>
 
 <body>
@@ -106,7 +106,7 @@
         var zoomControl = new daum.maps.ZoomControl();
         map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
         var jo, filtered; // json data룰 저장할 변수
-        $.getJSON("https://raw.githubusercontent.com/devholic/somat/gh-pages/somat.json", function(data) {
+        $.getJSON("https://raw.githubusercontent.com/devholic/somat/gh-pages/somalife.json", function(data) {
             jo = data;
             updateMarker(jo);
         });
