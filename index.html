@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <meta http-equiv="Expires" content="-1"> 
+    <meta http-equiv="Pragma" content="no-cache"> 
+    <meta http-equiv="Cache-Control" content="No-Cache"> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -97,7 +100,18 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-        var markers = [];
+        function detectmob() { 
+            if( navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)
+            ){ return true; }
+            else { return false; }
+        }
+        var isMobile = detectmob();
         var resultDiv = document.getElementById("query_result");
         var container = document.getElementById('map');
         var options = {
@@ -116,7 +130,7 @@
         var jo, filtered; // json data룰 저장할 변수
         // live : ./somalife.json
         // local : https://raw.githubusercontent.com/devholic/somalife/gh-pages/somalife.json
-        $.getJSON("./somalife.json", function(data) {
+        $.getJSON("https://raw.githubusercontent.com/devholic/somalife/gh-pages/somalife.json", function(data) {
             jo = data;
             updateResult(jo);
         });
@@ -129,6 +143,8 @@
                 r.latlng = new daum.maps.LatLng(d.restaurant[k].y,d.restaurant[k].x);
                 r.tag = d.restaurant[k].tag;
                 r.content = d.restaurant[k].content;
+                r.y = d.restaurant[k].y;
+                r.x = d.restaurant[k].x;
                 dat.push(r);
             }
             for (var i = 0; i < dat.length; i ++) {
@@ -138,6 +154,22 @@
                 });
                 marker.setMap(map);
                 //인포 윈도우
+                if(!isMobile){
+                var infowindow;
+                daum.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+                    return function() {
+                        infowindow = new daum.maps.InfoWindow({
+                            content: '<p style="margin:7px 22px 7px 12px;font:12px/1.5 sans-serif">' + dat[i].title + '</p>'
+                        });
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+                daum.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
+                    return function() {
+                        infowindow.close();
+                    }
+                })(marker, i));
+                }else{
                 daum.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
                         var infowindow = new daum.maps.InfoWindow({
@@ -147,8 +179,9 @@
                       infowindow.open(map, marker);
                     }
                 })(marker, i));
+                }
                 var tDiv = document.createElement('div');
-                tDiv.innerHTML = '<div class="line"></div><h3 style="margin-top:0.2em;margin-bottom:0.2em">'+dat[i].title+'</h3><h5 style="margin-top:0.2em;margin-bottom:0.3em">'+dat[i].content+'</h5><h6 style="margin-top:0.2em">'+dat[i].tag+'</h6>';
+                tDiv.innerHTML = '<div class="line"></div><h3 style="margin-top:0.2em;margin-bottom:0.2em">'+dat[i].title+'</h3><h5 style="margin-top:0.2em;margin-bottom:0.3em">'+dat[i].content+'</h5><h6 style="margin-top:0.2em"><a href=http://map.daum.net/link/to/'+dat[i].title+','+dat[i].y+','+dat[i].x+'>길찾기</a> | '+dat[i].tag+'</h6>';
                 query_result.appendChild(tDiv);
             }
         }
