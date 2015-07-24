@@ -97,6 +97,7 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+        var markers = [];
         var resultDiv = document.getElementById("query_result");
         var container = document.getElementById('map');
         var options = {
@@ -113,11 +114,14 @@
         var zoomControl = new daum.maps.ZoomControl();
         map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
         var jo, filtered; // json data룰 저장할 변수
+        // live : ./somalife.json
+        // local : https://raw.githubusercontent.com/devholic/somalife/gh-pages/somalife.json
         $.getJSON("./somalife.json", function(data) {
             jo = data;
             updateResult(jo);
         });
         function updateResult(d){
+            markers = [];
             var dat = new Array();
             for(var k in d.restaurant) {
                 var r = new Object();
@@ -130,10 +134,19 @@
             for (var i = 0; i < dat.length; i ++) {
                 // 마커를 생성합니다
                 var marker = new daum.maps.Marker({
-                    map: map, // 마커를 표시할 지도
-                    position: dat[i].latlng, // 마커를 표시할 위치
-                    title : dat[i].title // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                    position: dat[i].latlng
                 });
+                marker.setMap(map);
+                //인포 윈도우
+                daum.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        var infowindow = new daum.maps.InfoWindow({
+                            content: '<p style="margin:7px 22px 7px 12px;font:12px/1.5 sans-serif">' + dat[i].title + '</p>',
+                            removable : true
+                        });
+                      infowindow.open(map, marker);
+                    }
+                })(marker, i));
                 var tDiv = document.createElement('div');
                 tDiv.innerHTML = '<div class="line"></div><h3 style="margin-top:0.2em;margin-bottom:0.2em">'+dat[i].title+'</h3><h5 style="margin-top:0.2em;margin-bottom:0.3em">'+dat[i].content+'</h5><h6 style="margin-top:0.2em">'+dat[i].tag+'</h6>';
                 query_result.appendChild(tDiv);
