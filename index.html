@@ -97,7 +97,18 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-        var markers = [];
+        function detectmob() { 
+            if( navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)
+            ){ return true; }
+            else { return false; }
+        }
+        var isMobile = detectmob();
         var resultDiv = document.getElementById("query_result");
         var container = document.getElementById('map');
         var options = {
@@ -140,6 +151,7 @@
                 });
                 marker.setMap(map);
                 //인포 윈도우
+                if(!isMobile){
                 var infowindow;
                 daum.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
                     return function() {
@@ -154,15 +166,17 @@
                         infowindow.close();
                     }
                 })(marker, i));
+                }else{
                 daum.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
-                        var infowindow2 = new daum.maps.InfoWindow({
+                        var infowindow = new daum.maps.InfoWindow({
                             content: '<p style="margin:7px 22px 7px 12px;font:12px/1.5 sans-serif">' + dat[i].title + '</p>',
                             removable : true
                         });
-                      infowindow2.open(map, marker);
+                      infowindow.open(map, marker);
                     }
                 })(marker, i));
+                }
                 var tDiv = document.createElement('div');
                 tDiv.innerHTML = '<div class="line"></div><h3 style="margin-top:0.2em;margin-bottom:0.2em">'+dat[i].title+'</h3><h5 style="margin-top:0.2em;margin-bottom:0.3em">'+dat[i].content+'</h5><h6 style="margin-top:0.2em"><a href=http://map.daum.net/link/to/'+dat[i].title+','+dat[i].y+','+dat[i].x+'>길찾기</a> | '+dat[i].tag+'</h6>';
                 query_result.appendChild(tDiv);
