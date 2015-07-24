@@ -113,7 +113,7 @@
         var zoomControl = new daum.maps.ZoomControl();
         map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
         var jo, filtered; // json data룰 저장할 변수
-        $.getJSON("https://raw.githubusercontent.com/devholic/somat/gh-pages/somalife.json", function(data) {
+        $.getJSON("./somalife.json", function(data) {
             jo = data;
             updateResult(jo);
         });
