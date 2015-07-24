@@ -116,7 +116,7 @@
         var jo, filtered; // json data룰 저장할 변수
         // live : ./somalife.json
         // local : https://raw.githubusercontent.com/devholic/somalife/gh-pages/somalife.json
-        $.getJSON("./somalife.json", function(data) {
+        $.getJSON("https://raw.githubusercontent.com/devholic/somalife/gh-pages/somalife.json", function(data) {
             jo = data;
             updateResult(jo);
         });
@@ -140,7 +140,7 @@
                 });
                 marker.setMap(map);
                 //인포 윈도우
-                var infowindow, infowindow_c;
+                var infowindow;
                 daum.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
                     return function() {
                         infowindow = new daum.maps.InfoWindow({
@@ -152,6 +152,15 @@
                 daum.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
                     return function() {
                         infowindow.close();
+                    }
+                })(marker, i));
+                daum.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        var infowindow2 = new daum.maps.InfoWindow({
+                            content: '<p style="margin:7px 22px 7px 12px;font:12px/1.5 sans-serif">' + dat[i].title + '</p>',
+                            removable : true
+                        });
+                      infowindow2.open(map, marker);
                     }
                 })(marker, i));
                 var tDiv = document.createElement('div');
