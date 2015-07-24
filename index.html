@@ -1,68 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="utf-8">
-    <title>somat</title>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>somalife</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="./somalife.css" rel="stylesheet">
 </head>
+
 <body>
-    <h1>Somat</h1>
-    <h2>소프트웨어 마에스트로 멘티들을 위한 맛집 일람</h2>
-    <h3>멘토링때 식사 하기 적당한곳</h3>
-    <div id="mentoring"></div>
-    <h3>한식</h3>
-    <div id="korean"></div>
-    <h3>중식</h3>
-    <div id="chinese"></div>
-    <h3>일식</h3>
-    <div id="japanese"></div>
-    <h3>음주</h3>
-    <div id="drink"></div>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a>somalife</a>
+                </li>
+                <div style="height:1px;width:100%;background:#333;margin-bottom:1em"></div>
+                <div>
+                    <p class="tag-title">음식점</p>
+                    <p class="tag-group">         
+                    <a class="tag" href="#food-korean">#한식</a>
+                    <a class="tag" href="#food-chinese">#중식</a>
+                    <a class="tag" href="#food-japanese">#일식</a>
+                    <a class="tag" href="#food-eng">#양식</a>
+                    <a class="tag" href="#food-snack">#분식</a>
+                    <a class="tag" href="#food-etc">#기타</a>
+                    </p>
+                    <p class="tag-title">데이터 소스</p>
+                    <p class="tag-group">         
+                    <a class="tag" href="#data-somat">#somat</a>
+                    <a class="tag" href="#data-baedong">#배동여지도</a>
+                    </p>
+                    <p class="tag-title">가격대</p>
+                    <p class="tag-group">         
+                    <a class="tag" href="#price-high">#비싼</a>   
+                    <a class="tag" href="#price-normal">#보통</a>   
+                    <a class="tag" href="#price-cheap">#싼</a>
+                    </p>
+                    <p class="tag-title">맛</p>
+                    <p class="tag-group">         
+                    <a class="tag" href="#taste-spicy">#매운</a>
+                    </p>
+                    <p class="tag-title">기타</p>
+                    <p class="tag-group">
+                    <a class="tag" href="#etc-mentoring">#멘토링추천</a>    
+                    <a class="tag" href="#etc-boolbaek">#불백</a>
+                    <a class="tag" href="#etc-soup">#국물</a>
+                    <a class="tag" href="#etc-foodcourt">#푸드코트</a>
+                    <a class="tag" href="#etc-24hr">#24시간</a>
+                    </p>
+                </div>
+                <div style="height:1px;width:100%;background:#333;margin-bottom:1em"></div>
+                <div>
+                    <p class="tag-title">문화</p>
+                    <p class="tag-group">         
+                    <a class="tag" href="#culture-movie">#영화관</a>
+                    <a class="tag" href="#culture-sing">#노래방</a>
+                    <a class="tag" href="#culture-park">#공원</a>
+                    </p>
+                </div>
+                <div style="height:1px;width:100%;background:#333;margin-bottom:1em"></div>
+                <div>
+                    <p class="tag-title">생활</p>
+                    <p class="tag-group">         
+                    <a class="tag" href="#life-hospital">#병원</a>
+                    <a class="tag" href="#life-pharmacy">#약국</a>
+                    </p>
+                </div>
+            </ul>
+        </div>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div style="width:100%;height:50%;position:relative;">
+            <div id="map" style="width:100%;height:100%;position:absolute;top:0px;left:0px;">
+            </div>
+            <div id="menu-toggle" style="width:3.3em;height:3.3em;position:absolute;top:0px;left:0px;background:rgba(0,0,0,0.5);z-index:100;">
+            <center><span class="glyphicon glyphicon-option-vertical" style="color:#fff;font-size:1.2em;line-height:2.5em;"></span></center>
+            </div>
+            </div>
+            <div id="query_result" class="fill">
+                <!--<div class="no-content"><h2>표시할 음식점이 없어요 :(</h2></div>-->
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <script type="text/javascript" src="https://apis.daum.net/maps/maps3.js?apikey=8d92633e25ffd8778cdc30f6e52dbd60"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Menu Toggle Script -->
     <script>
-    $.ajax({
-        url: './README.md',
-        complete: function (data) {
-            var information = parse(data.responseText);
-            console.log(information);
-            $.each(information, function (type, matList) {
-                var $type = $('#' + type);
-                $.each(matList, function (_, mat) {
-                    var $matName = $('<h4 class="mat-name">').text(mat.name);
-                    var $matFeatureList = $('<ul class="mat-feature-list">');
-                    $.each(mat.featureList, function (_, feature) {
-                        $matFeatureList.append($('<li class="mat-feature">').html(feature));
-                    });
-                    $type.append($('<div class="mat">').append($matName, $matFeatureList));
-                });
-            });
-        }
-    });
-    function parse(readme) {
-        return {
-            mentoring: parseMatList(/멘토링때 식사 하기 적당한곳\s*----\s*((?:.|\r?\n)+)\s+한식\s*----/.exec(readme)[1]),
-            korean: parseMatList(/한식\s*----\s*((?:.|\r?\n)+)\s+중식\s*----/.exec(readme)[1]),
-            chinese: parseMatList(/중식\s*----\s*((?:.|\r?\n)+)\s+일식\s*----/.exec(readme)[1]),
-            japanese: parseMatList(/일식\s*----\s*((?:.|\r?\n)+)\s+음주/.exec(readme)[1]),
-            drink: parseMatList(/음주\s*----\s*((?:.|\r?\n)+)\s+# Contributors/.exec(readme)[1])
-        }
-    }
-    function parseMatList(matListChunk) {
-        var chunkList = matListChunk.trim().split(/(?:^|\r?\n)\* /g);
-        Array.prototype.shift.call(chunkList); // remove first blank string
-        return $.map(chunkList, function (chunk) {
-            var featureList = chunk.split(/\r?\n/g);
-            return {
-                name: featureList.shift(),
-                featureList: featureList.map(function (feature) {
-                    return parseFeature(feature);
-                })
-            };
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
         });
-    }
-    function parseFeature(feature) {
-        feature = feature.substr(3); // cut ' * '
-        return feature.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
-    }
+        var markers = [];
+        var resultDiv = document.getElementById("query_result");
+        var container = document.getElementById('map');
+        var options = {
+            center: new daum.maps.LatLng(37.503682, 127.044851),
+            level: 4
+        };
+        var map = new daum.maps.Map(container, options);
+        // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+        var mapTypeControl = new daum.maps.MapTypeControl();
+        // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+        // daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+        map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+        var zoomControl = new daum.maps.ZoomControl();
+        map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+        var jo, filtered; // json data룰 저장할 변수
+        // live : ./somalife.json
+        // local : https://raw.githubusercontent.com/devholic/somalife/gh-pages/somalife.json
+        $.getJSON("./somalife.json", function(data) {
+            jo = data;
+            updateResult(jo);
+        });
+        function updateResult(d){
+            markers = [];
+            var dat = new Array();
+            for(var k in d.restaurant) {
+                var r = new Object();
+                r.title = d.restaurant[k].name;
+                r.latlng = new daum.maps.LatLng(d.restaurant[k].y,d.restaurant[k].x);
+                r.tag = d.restaurant[k].tag;
+                r.content = d.restaurant[k].content;
+                dat.push(r);
+            }
+            for (var i = 0; i < dat.length; i ++) {
+                // 마커를 생성합니다
+                var marker = new daum.maps.Marker({
+                    position: dat[i].latlng
+                });
+                marker.setMap(map);
+                //인포 윈도우
+                daum.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        var infowindow = new daum.maps.InfoWindow({
+                            content: '<p style="margin:7px 22px 7px 12px;font:12px/1.5 sans-serif">' + dat[i].title + '</p>',
+                            removable : true
+                        });
+                      infowindow.open(map, marker);
+                    }
+                })(marker, i));
+                var tDiv = document.createElement('div');
+                tDiv.innerHTML = '<div class="line"></div><h3 style="margin-top:0.2em;margin-bottom:0.2em">'+dat[i].title+'</h3><h5 style="margin-top:0.2em;margin-bottom:0.3em">'+dat[i].content+'</h5><h6 style="margin-top:0.2em">'+dat[i].tag+'</h6>';
+                query_result.appendChild(tDiv);
+            }
+        }
     </script>
 </body>
+
 </html>
