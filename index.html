@@ -80,7 +80,7 @@
             </div>
             </div>
             <div id="query_result" class="fill">
-                <div class="no-content"><h2>표시할 음식점이 없어요 :(</h2></div>
+                <!--<div class="no-content"><h2>표시할 음식점이 없어요 :(</h2></div>-->
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -97,6 +97,7 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+        var resultDiv = document.getElementById("query_result");
         var container = document.getElementById('map');
         var options = {
             center: new daum.maps.LatLng(37.503682, 127.044851),
@@ -114,16 +115,17 @@
         var jo, filtered; // json data룰 저장할 변수
         $.getJSON("https://raw.githubusercontent.com/devholic/somat/gh-pages/somalife.json", function(data) {
             jo = data;
-            updateMarker(jo);
+            updateResult(jo);
         });
-        function updateMarker(d){
+        function updateResult(d){
             var dat = new Array();
             for(var k in d.restaurant) {
                 var r = new Object();
                 r.title = d.restaurant[k].name;
                 r.latlng = new daum.maps.LatLng(d.restaurant[k].y,d.restaurant[k].x);
+                r.tag = d.restaurant[k].tag;
+                r.content = d.restaurant[k].content;
                 dat.push(r);
-                console.log(r.title);
             }
             for (var i = 0; i < dat.length; i ++) {
                 // 마커를 생성합니다
@@ -132,6 +134,9 @@
                     position: dat[i].latlng, // 마커를 표시할 위치
                     title : dat[i].title // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                 });
+                var tDiv = document.createElement('div');
+                tDiv.innerHTML = '<div class="line"></div><h3 style="margin-top:0.2em;margin-bottom:0.2em">'+dat[i].title+'</h3><h5 style="margin-top:0.2em;margin-bottom:0.3em">'+dat[i].content+'</h5><h6 style="margin-top:0.2em">'+dat[i].tag+'</h6>';
+                query_result.appendChild(tDiv);
             }
         }
     </script>
