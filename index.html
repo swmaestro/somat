@@ -129,6 +129,8 @@
                 r.latlng = new daum.maps.LatLng(d.restaurant[k].y,d.restaurant[k].x);
                 r.tag = d.restaurant[k].tag;
                 r.content = d.restaurant[k].content;
+                r.y = d.restaurant[k].y;
+                r.x = d.restaurant[k].x;
                 dat.push(r);
             }
             for (var i = 0; i < dat.length; i ++) {
@@ -148,7 +150,7 @@
                     }
                 })(marker, i));
                 var tDiv = document.createElement('div');
-                tDiv.innerHTML = '<div class="line"></div><h3 style="margin-top:0.2em;margin-bottom:0.2em">'+dat[i].title+'</h3><h5 style="margin-top:0.2em;margin-bottom:0.3em">'+dat[i].content+'</h5><h6 style="margin-top:0.2em">'+dat[i].tag+'</h6>';
+                tDiv.innerHTML = '<div class="line"></div><h3 style="margin-top:0.2em;margin-bottom:0.2em">'+dat[i].title+'</h3><h5 style="margin-top:0.2em;margin-bottom:0.3em">'+dat[i].content+'</h5><h6 style="margin-top:0.2em"><a href=http://map.daum.net/link/to/'+dat[i].title+','+dat[i].y+','+dat[i].x+'>길찾기</a> | '+dat[i].tag+'</h6>';
                 query_result.appendChild(tDiv);
             }
         }
