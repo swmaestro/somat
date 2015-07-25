@@ -266,7 +266,7 @@
         var jo, filtered; // json data룰 저장할 변수
         // live : ./somalife.json
         // local : https://raw.githubusercontent.com/devholic/somalife/gh-pages/somalife.json
-        $.getJSON("https://raw.githubusercontent.com/devholic/somalife/gh-pages/somalife.json", function(data) {
+        $.getJSON("./somalife.json", function(data) {
             jo = data;
             isLoaded = true;
             updateResult();
