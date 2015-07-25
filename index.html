@@ -266,7 +266,7 @@
         var jo, filtered; // json data를 저장할 변수
         // live : ./somalife.json
         // local : https://raw.githubusercontent.com/devholic/somalife/gh-pages/somalife.json
-        $.getJSON("./somalife.json", function(data) {
+        $.getJSON("https://raw.githubusercontent.com/devholic/somalife/gh-pages/somalife.json", function(data) {
             jo = data;
             isLoaded = true;
             updateResult();
@@ -282,17 +282,18 @@
         	clearResult();
             var dat = new Array();
             for(var k in jo.data) {
+                var count = 0;
             	var passed = false;
             	if(queryParam.length==0){
             		passed = true;
             	}else{
             		for(var i=0;i<queryParam.length;i++){
                 		if(jo.data[k].tag.indexOf(queryParam[i]) != -1){
-                			passed = true;
+                			count++;
                 		}
                 	}
                 }
-                if(passed){
+                if(passed || count == queryParam.length){
                 	var r = new Object();
                 	r.title = jo.data[k].name;
                		r.latlng = new daum.maps.LatLng(jo.data[k].y,jo.data[k].x);
