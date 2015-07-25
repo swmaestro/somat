@@ -287,19 +287,19 @@
             		passed = true;
             	}else{
             		for(var i=0;i<queryParam.length;i++){
-                		if(jo.restaurant[k].tag.indexOf(queryParam[i]) != -1){
+                		if(jo.data[k].tag.indexOf(queryParam[i]) != -1){
                 			passed = true;
                 		}
                 	}
                 }
                 if(passed){
                 	var r = new Object();
-                	r.title = jo.restaurant[k].name;
-               		r.latlng = new daum.maps.LatLng(jo.restaurant[k].y,jo.restaurant[k].x);
-                	r.tag = jo.restaurant[k].tag;
-                	r.content = jo.restaurant[k].content;
-                	r.y = jo.restaurant[k].y;
-                	r.x = jo.restaurant[k].x;
+                	r.title = jo.data[k].name;
+               		r.latlng = new daum.maps.LatLng(jo.data[k].y,jo.data[k].x);
+                	r.tag = jo.data[k].tag;
+                	r.content = jo.data[k].content;
+                	r.y = jo.data[k].y;
+                	r.x = jo.data[k].x;
                 	dat.push(r);
                 }
             }
