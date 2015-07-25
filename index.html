@@ -103,11 +103,41 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- Menu Toggle Script -->
     <script>
-    	//
+    	"use strict";
+
+        // keyword meta data table
+    	var keyword_meta_data = {
+            'food-korean' : '한식',
+            'food-chinese' : '중식',
+            'food-japanese' : '일식',
+            'food-eng' : '양식',
+            'food-fastfood' : '패스트푸드',
+            'food-snack' : '분식',
+            'food-etc' : '기타',
+            'data-somalife' : 'somalife',
+            'data-somat' : 'somat',
+            'data-baedong' : '배동여지도',
+            'price-high' : '비싼',
+            'price-normal' : '보통',
+            'price-cheap' : '싼',
+            'taste-spicy' : '매운',
+            'etc-mentoring' : '멘토링추천',
+            'etc-boolbaek' : '불백',
+            'etc-soup' : '국물',
+            'etc-foodcourt' : '푸드코트',
+            'etc-24hr' : '24시간',
+            'culture-movie' : '영화관',
+            'culture-sing' : '노래방',
+            'culture-park' : '공원',
+            'life-hospital' : '병원',
+            'life-pharmacy' : '약국'
+        };
+
     	var isLoaded = false;
     	var queryParam = new Array();
     	var markers = new Array();
     	var infowindows = new Array();
+
         $("#menu-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
@@ -116,102 +146,23 @@
             e.preventDefault();
             clearParam();
         });
-        $("#food-korean").click(function(e) {
-            e.preventDefault();
-            editParam("#한식");
-        });
-        $("#food-chinese").click(function(e) {
-            e.preventDefault();
-            editParam("#중식");
-        });
-        $("#food-japanese").click(function(e) {
-            e.preventDefault();
-            editParam("#일식");
-        });
-        $("#food-eng").click(function(e) {
-            e.preventDefault();
-            editParam("#양식");
-        });
-        $("#food-fastfood").click(function(e) {
-            e.preventDefault();
-            editParam("#패스트푸드");
-        });
-        $("#food-snack").click(function(e) {
-            e.preventDefault();
-            editParam("#분식");
-        });
-        $("#food-etc").click(function(e) {
-            e.preventDefault();
-            editParam("#기타");
-        });
-        $("#data-somalife").click(function(e) {
-            e.preventDefault();
-            editParam("#somalife");
-        });
-        $("#data-somat").click(function(e) {
-            e.preventDefault();
-            editParam("#somat");
-        });
-        $("#data-baedong").click(function(e) {
-            e.preventDefault();
-            editParam("#배동여지도");
-        });
-        $("#price-high").click(function(e) {
-            e.preventDefault();
-            editParam("#비싼");
-        });
-        $("#price-normal").click(function(e) {
-            e.preventDefault();
-            editParam("#보통");
-        });
-        $("#price-cheap").click(function(e) {
-            e.preventDefault();
-            editParam("#싼");
-        });
-        $("#taste-spicy").click(function(e) {
-            e.preventDefault();
-            editParam("#매운");
-        });
-        $("#etc-mentoring").click(function(e) {
-            e.preventDefault();
-            editParam("#멘토링추천");
-        });
-        $("#etc-boolbaek").click(function(e) {
-            e.preventDefault();
-            editParam("#불백");
-        });
-        $("#etc-soup").click(function(e) {
-            e.preventDefault();
-            editParam("#국물");
-        });
-        $("#etc-foodcourt").click(function(e) {
-            e.preventDefault();
-            editParam("#푸드코트");
-        });
-        $("#etc-24hr").click(function(e) {
-            e.preventDefault();
-            editParam("#24시간");
-        });
-        $("#culture-movie").click(function(e) {
-            e.preventDefault();
-            editParam("#영화관");
-        });
-        $("#culture-sing").click(function(e) {
-            e.preventDefault();
-            editParam("#노래방");
-        });
-        $("#culture-park").click(function(e) {
-            e.preventDefault();
-            editParam("#공원");
-        });
-        $("#life-hospital").click(function(e) {
-            e.preventDefault();
-            editParam("#병원");
-        });
-        $("#life-pharmacy").click(function(e) {
-            e.preventDefault();
-            editParam("#약국");
-        });
+
+        for(var key in keyword_meta_data) {
+
+            // add attribute for find it later
+            $("#" + key).attr('data-meta-data-key', key)
+            // set click event
+            $("#" + key).click(function(e, elem) {
+                
+                var $target = $(e.target);
+
+                e.preventDefault();
+
+                $target.toggleClass("selected");
+                editParam("#" + keyword_meta_data[$target.attr('data-meta-data-key')]);
+            });
+        }
+
         function clearParam(){
         	if(isLoaded){
         		queryParam = new Array();
@@ -315,36 +266,61 @@
                 var marker = new daum.maps.Marker({
                     position: dat[i].latlng
                 });
+
                 marker.setMap(map);
                 markers.push(marker);
-                if(!isMobile){
-                	var infowindow;
-                	daum.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
-                    	return function() {
-                        	infowindow = new daum.maps.InfoWindow({
-                            	content: '<p style="margin:7px 22px 7px 12px;font:12px/1.5 sans-serif">' + dat[i].title + '</p>'
-                        	});
-                        	infowindow.open(map, marker);
-						}
-					})(marker, i));
-               		daum.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
-                    	return function() {
-                        	infowindow.close();
-                    	}
-                	})(marker, i));
-                }else{
-                	infowindows[i] = new daum.maps.InfoWindow({
-                           	content: '<p style="margin:7px 22px 7px 12px;font:12px/1.5 sans-serif">' + dat[i].title + '</p>',
-                          	removable : true
-                        });
-               		daum.maps.event.addListener(marker, 'click', (function(marker, i) {
-                    	return function() {
-                      		infowindows[i].open(map, marker);
-                    	}
-                	})(marker, i));
+
+                var open_event_name = 'mouseover';
+                var infoWindowOptions = {};
+
+                if(isMobile) {
+                    infoWindowOptions['content'] = '<p class="map-info"><span class="title">'
+                    + dat[i].title + '</span><br>' + '<a href="#result-' + i + '">바로가기</a></p>';
+
+                    infoWindowOptions['removable'] = true;
+                    open_event_name = 'click';
                 }
+                else {
+                    infoWindowOptions['content'] = '<p class="map-info"><span class="title">'
+                    + dat[i].title + '</span><br>' + '<span class="tags">' + dat[i].tag
+                    + '</span></p>';
+                }
+
+                marker.infoWindow = new daum.maps.InfoWindow(infoWindowOptions);
+                marker.datIndex = i
+
+                // open event
+                daum.maps.event.addListener(marker, open_event_name, (function(marker) {
+                    return function() {
+                        marker.infoWindow.open(map, marker);
+                    }
+                })(marker));
+
+                // add close event in desktop view & click event to show info
+                if(!isMobile){
+               		daum.maps.event.addListener(marker, 'mouseout', (function(marker) {
+                    	return function() {
+                        	marker.infoWindow.close();
+                    	}
+                	})(marker));
+
+                    daum.maps.event.addListener(marker, 'click', (function(marker) {
+                        return function() {
+                            window.location.hash = '#result-' + marker.datIndex;
+                        }
+                    })(marker));
+                }
+
                 var tDiv = document.createElement('div');
-                tDiv.innerHTML = '<div class="line"></div><h3 style="margin-top:0.2em;margin-bottom:0.2em">'+dat[i].title+'</h3><h5 style="margin-top:0.2em;margin-bottom:0.3em">'+dat[i].content+'</h5><h6 style="margin-top:0.2em"><a href=http://map.daum.net/link/to/'+urlSpaceReplace(dat[i].title)+','+dat[i].y+','+dat[i].x+'>길찾기</a> | '+dat[i].tag+'</h6>';
+
+                tDiv.setAttribute('id', 'result-' + i);
+                var link = 'http://map.daum.net/link/to/'+urlSpaceReplace(dat[i].title)+','+dat[i].y+','+dat[i].x;
+
+                tDiv.className += "result"
+
+                tDiv.innerHTML = '<div class="line"></div><h3 class="title">'+dat[i].title+'</h3>' +
+                        '<p class="content">'+dat[i].content+'</p>' + 
+                        '<div class="link"><a href=' + link +' target="_blank">길찾기</a> | '+dat[i].tag+'</div>';
                 query_result.appendChild(tDiv);
             }
             var pDiv = document.createElement('div');
