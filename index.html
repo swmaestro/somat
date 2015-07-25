@@ -263,7 +263,7 @@
         map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
         var zoomControl = new daum.maps.ZoomControl();
         map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-        var jo, filtered; // json data룰 저장할 변수
+        var jo, filtered; // json data를 저장할 변수
         // live : ./somalife.json
         // local : https://raw.githubusercontent.com/devholic/somalife/gh-pages/somalife.json
         $.getJSON("./somalife.json", function(data) {
@@ -281,7 +281,7 @@
         function updateResult(){
         	clearResult();
             var dat = new Array();
-            for(var k in jo.restaurant) {
+            for(var k in jo.data) {
             	var passed = false;
             	if(queryParam.length==0){
             		passed = true;
