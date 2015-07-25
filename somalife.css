@@ -45,8 +45,16 @@ html,body{
     color: #999999;
 }
 
-.tag-group a:hover, .tag-group a:focus {
+a.init:hover, a.init:active, a.init:focus{
     color: #EEEEEE;
+}
+
+.tag-group a:hover, .tag-group a:active, .tag-group a:focus {
+    color: #EEEEEE;
+}
+
+.tag-group a.selected {
+    color: #FFFFFF;
 }
 
 /* Toggle Styles */

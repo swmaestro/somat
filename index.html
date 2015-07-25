@@ -21,8 +21,8 @@
                 </li>
                 <div style="height:1px;width:100%;background:#333;margin-bottom:1em"></div>
                 <div>
-               		<p class="tag-title">현재 필터</p>
-                    <p class="tag-group">         
+               		<p class="tag-title">현재 필터 | <a id="init-param" class="tag init" href="#">초기화</a></p>
+                    <p class="tag-group">    
                     <span id="current-filter" class="tag"></span>
                     </p>
                     <div style="height:1px;width:100%;background:#333;margin-bottom:1em"></div>
@@ -110,6 +110,10 @@
         $("#menu-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
+        });
+        $("#init-param").click(function(e) {
+            e.preventDefault();
+            clearParam();
         });
         $("#food-korean").click(function(e) {
             e.preventDefault();
@@ -207,20 +211,30 @@
             e.preventDefault();
             editParam("#약국");
         });
+        function clearParam(){
+        	if(isLoaded){
+        		queryParam = new Array();
+        		editParam();
+        	}
+        }
         function editParam(k){
-        	var idx = queryParam.indexOf(k);
-            if(idx==-1){
-            	queryParam.push(k);
-            }else{
-            	queryParam.splice(idx,1);
+        	if(isLoaded){
+        		if(k!=null){
+        			var idx = queryParam.indexOf(k);
+            		if(idx==-1){
+            			queryParam.push(k);
+            		}else{
+            			queryParam.splice(idx,1);
+            		}
+        		}
+            	var s = document.getElementById("current-filter");
+            	var txt = "";
+            	for(var i=0;i<queryParam.length;i++){
+            		txt += (queryParam[i]+" ");
+            	}
+            	s.innerHTML = txt;
+            	updateResult();
             }
-            var s = document.getElementById("current-filter");
-            var txt = "";
-            for(var i=0;i<queryParam.length;i++){
-            	txt += (queryParam[i]+" ");
-            }
-            s.innerHTML = txt;
-            updateResult();
         }
         function detectmob() { 
             if( navigator.userAgent.match(/Android/i)
