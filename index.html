@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>somalife</title>
+    <title>anamlife</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link href="./somalife.css" rel="stylesheet">
 </head>
@@ -38,9 +38,9 @@
                     </p>
                     <p class="tag-title">데이터 소스</p>
                     <p class="tag-group">
-                    <a id="data-somalife" class="tag" href="#">#somalife</a>
-                    <a id="data-somat" class="tag" href="#">#somat</a>
-                    <a id="data-baedong" class="tag" href="#">#배동여지도</a>
+                    <a id="data-sopo" class="tag" href="#">#소포게</a>
+                    <a id="data-direct" class="tag" href="#">#직접</a>
+                    <a id="data-jebo" class="tag" href="#">#제보</a>
                     </p>
                     <p class="tag-title">가격대</p>
                     <p class="tag-group">         
@@ -54,10 +54,7 @@
                     </p>
                     <p class="tag-title">기타</p>
                     <p class="tag-group">
-                    <a id="etc-mentoring" class="tag" href="#">#멘토링추천</a>    
-                    <a id="etc-boolbaek" class="tag" href="#">#불백</a>
                     <a id="etc-soup" class="tag" href="#">#국물</a>
-                    <a id="etc-foodcourt" class="tag" href="#">#푸드코트</a>
                     <a id="etc-24hr" class="tag" href="#">#24시간</a>
                     </p>
                 </div>
@@ -114,17 +111,14 @@
             'food-fastfood' : '패스트푸드',
             'food-snack' : '분식',
             'food-etc' : '기타',
-            'data-somalife' : 'somalife',
-            'data-somat' : 'somat',
-            'data-baedong' : '배동여지도',
+            'data-sopo' : '소포게',
+            'data-direct' : '직접',
+            'data-jebo' : '제보',
             'price-high' : '비싼',
             'price-normal' : '보통',
             'price-cheap' : '싼',
             'taste-spicy' : '매운',
-            'etc-mentoring' : '멘토링추천',
-            'etc-boolbaek' : '불백',
             'etc-soup' : '국물',
-            'etc-foodcourt' : '푸드코트',
             'etc-24hr' : '24시간',
             'culture-movie' : '영화관',
             'culture-sing' : '노래방',
@@ -216,9 +210,9 @@
         var zoomControl = new daum.maps.ZoomControl();
         map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
         var jo, filtered; // json data를 저장할 변수
-        // live : ./somalife.json
-        // local : https://raw.githubusercontent.com/devholic/somalife/gh-pages/somalife.json
-        $.getJSON("./somalife.json", function(data) {
+        // live : ./anamlife.json
+        // local : https://raw.githubusercontent.com/devholic/somalife/gh-pages/anamlife.json
+        $.getJSON("./anamlife.json", function(data) {
             jo = data;
             isLoaded = true;
             updateResult();
