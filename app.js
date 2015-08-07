@@ -12,7 +12,7 @@ var dataJsonUrl = "./somalife.json";
 var swCenterPos = {x: 127.044958, y: 37.503553};
 
 if(DEBUG)
-    dataJsonUrl = "http://swmaestro.github.io/somat/somalife.json";
+    dataJsonUrl = "http://luavis.github.io/somat/somalife.json";
 
 // keyword meta data table
 var keyword_meta_data = {
