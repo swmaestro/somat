@@ -199,6 +199,7 @@ function updateResult(){
             r.content = jo.data[k].content;
             r.y = jo.data[k].y;
             r.x = jo.data[k].x;
+            r.except = jo.data[k].except;
             dat.push(r);
         }
     }
@@ -217,7 +218,7 @@ function updateResult(){
         });
 
         marker.setMap(map);
-        markers.push(marker);
+        markers.push(marker);  // push marker in array
 
         var open_event_name = 'mouseover';
         var infoWindowOptions = {};
@@ -287,8 +288,6 @@ function updateResult(){
 
             query_result.appendChild(tDiv);
         }
-
-        markers.push(marker);  // push marker in array
     }
 
     $('.marker-window-link').click(function() {
@@ -297,13 +296,14 @@ function updateResult(){
 
         map.panTo(marker.getPosition());
         map.setLevel(3);
+
         for(var i in markers) {
             markers[i].infoWindow.close();
         }
 
         setAnimationMarker(marker);
         marker.infoWindow.open(map, marker);        
-    })
+    });
 
     var pDiv = document.createElement('div');
     pDiv.style.height="2em";
