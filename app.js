@@ -12,7 +12,7 @@ var dataJsonUrl = "./somalife.json";
 var swCenterPos = {x: 127.044958, y: 37.503553};
 
 if(DEBUG)
-    dataJsonUrl = "http://luavis.github.io/somat/somalife.json";
+    dataJsonUrl = "http://b.luavis.kr/somat/somalife.json";
 
 // keyword meta data table
 var keyword_meta_data = {
@@ -128,8 +128,8 @@ var isLoaded = false;
 var resultDiv = document.getElementById("query_result");
 var container = document.getElementById('map');
 var options = {
-    center: new daum.maps.LatLng(37.503682, 127.044851),
-    level: 5
+    center: new daum.maps.LatLng(swCenterPos.y, swCenterPos.x),
+    level: 3
 };
 var map = new daum.maps.Map(container, options);
 var mapTypeControl = new daum.maps.MapTypeControl();
@@ -151,6 +151,30 @@ function clearResult(){
     resultDiv.innerHTML = '';
     markers = new Array();
 }
+
+
+var selectedMarker = undefined;
+var selectedMarkerAlpha = 1
+
+function setAnimationMarker(marker) {
+    if(selectedMarker != undefined)
+        selectedMarker.setOpacity(1.0);
+
+    selectedMarker = marker;
+}
+
+setInterval(function() {
+
+    if(selectedMarker == undefined) {
+        return;
+    }
+
+    selectedMarker.setOpacity(selectedMarkerAlpha)
+    selectedMarkerAlpha -=0.01;
+    if(selectedMarkerAlpha <= 0) {
+        selectedMarkerAlpha = 1.0;
+    }
+}, 10)
 
 function updateResult(){
     clearResult();
@@ -277,6 +301,7 @@ function updateResult(){
             markers[i].infoWindow.close();
         }
 
+        setAnimationMarker(marker);
         marker.infoWindow.open(map, marker);        
     })
 
