@@ -3,7 +3,7 @@
 // Catution:
 // please change DEBUG to false before commit 
 
-var DEBUG = true;
+var DEBUG = false;
 
 // live : ./somalife.json
 // local : http://swmaestro.github.io/somat/somalife.json
@@ -12,7 +12,7 @@ var dataJsonUrl = "./somalife.json";
 var swCenterPos = {x: 127.044958, y: 37.503553};
 
 if(DEBUG)
-    dataJsonUrl = "http://b.luavis.kr/somat/somalife.json";
+    dataJsonUrl = "http://swmaestro.github.io/somat/somalife.json";
 
 // keyword meta data table
 var keyword_meta_data = {
