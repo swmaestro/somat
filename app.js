@@ -9,6 +9,7 @@ var DEBUG = true;
 // local : http://swmaestro.github.io/somat/somalife.json
 
 var dataJsonUrl = "./somalife.json";
+var swCenterPos = {x: 127.044958, y: 37.503553};
 
 if(DEBUG)
     dataJsonUrl = "http://swmaestro.github.io/somat/somalife.json";
@@ -77,6 +78,7 @@ function clearParam(){
         editParam();
     }
 }
+
 function editParam(k){
     if(isLoaded){
         if(k!=null){
@@ -96,6 +98,7 @@ function editParam(k){
         updateResult();
     }
 }
+
 function detectmob() { 
     if( navigator.userAgent.match(/Android/i)
     || navigator.userAgent.match(/webOS/i)
@@ -107,9 +110,19 @@ function detectmob() {
     ){ return true; }
     else { return false; }
 }
+
 function urlSpaceReplace(s){
     return(s.split(' ').join('%20'));
 }
+
+function degToRad(deg) {
+    return deg * Math.PI / 180; 
+}
+
+function radTodeg(rad) {
+    return rad * 180 / Math.PI;
+}
+
 var isMobile = detectmob();
 var isLoaded = false;
 var resultDiv = document.getElementById("query_result");
@@ -130,6 +143,7 @@ $.getJSON(dataJsonUrl, function(data) {
     isLoaded = true;
     updateResult();
 });
+
 function clearResult(){
     for (var i = 0; i < markers.length; i++){
         markers[i].setMap(null);
@@ -137,6 +151,7 @@ function clearResult(){
     resultDiv.innerHTML = '';
     markers = new Array();
 }
+
 function updateResult(){
     clearResult();
     var dat = new Array();
@@ -169,6 +184,9 @@ function updateResult(){
         nDiv.innerHTML = '<h2>표시할 데이터가 없어요 ㅠㅠ</h2>';
         query_result.appendChild(nDiv);
     }
+
+    var markers = new Array();
+
     for (var i=0;i<dat.length;i++) {
         var marker = new daum.maps.Marker({
             position: dat[i].latlng
@@ -199,6 +217,10 @@ function updateResult(){
         // open event
         daum.maps.event.addListener(marker, open_event_name, (function(marker) {
             return function() {
+                for(var i in markers) {
+                    markers[i].infoWindow.close();
+                }
+
                 marker.infoWindow.open(map, marker);
             }
         })(marker));
@@ -224,13 +246,39 @@ function updateResult(){
         var link = 'http://map.daum.net/link/to/'+urlSpaceReplace(dat[i].title)+','+dat[i].y+','+dat[i].x;
 
         tDiv.className += "result"
+        var theta = swCenterPos.x - dat[i].x;
+        marker.dist = Math.sin(degToRad(swCenterPos.y)) * Math.sin(degToRad(dat[i].y)) + Math.cos(degToRad(swCenterPos.y))   
+          * Math.cos(degToRad(dat[i].y)) * Math.cos(degToRad(theta));
+        marker.dist = Math.acos(marker.dist);
+        marker.dist = radTodeg(marker.dist);
+        marker.dist = marker.dist * 60 * 1.1515;   
+        marker.dist = marker.dist * 1.609344;
+        marker.dist = marker.dist * 1000.0;
 
-        tDiv.innerHTML = '<div class="line"></div><h3 class="title">'+dat[i].title+'</h3>' +
-                '<p class="content">'+dat[i].content+'</p>' + 
-                '<div class="link"><a href="' + link +'" target="_blank">길찾기</a> | <a href="#" class="marker-window-link">장소보기</a>  | '+dat[i].tag+'</div>';
+        if(dat[i].except == undefined) {
+            tDiv.innerHTML = '<div class="line"></div><h3 class="title">'+dat[i].title+'</h3>' +
+                    '<p class="content">'+dat[i].content+'</p>' + 
+                    '<div class="link"><a href="' + link +'" target="_blank">길찾기</a> | <a href="#" class="marker-window-link" data-marker-index="' + i +
+                    '">장소보기</a> | ' + parseInt(marker.dist) + 'm | '+dat[i].tag+'</div>';
 
-        query_result.appendChild(tDiv);
+            query_result.appendChild(tDiv);
+        }
+
+        markers.push(marker);  // push marker in array
     }
+
+    $('.marker-window-link').click(function() {
+        var marker_index = $(this).attr('data-marker-index');
+        var marker = markers[marker_index];
+
+        map.panTo(marker.getPosition());
+        map.setLevel(3);
+        for(var i in markers) {
+            markers[i].infoWindow.close();
+        }
+
+        marker.infoWindow.open(map, marker);        
+    })
 
     var pDiv = document.createElement('div');
     pDiv.style.height="2em";
