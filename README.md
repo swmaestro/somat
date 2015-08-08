@@ -65,3 +65,13 @@
 * 생활
 	* \#병원
 	* \#약국 
+
+# Contributors
+
+[![darjeeling](https://avatars0.githubusercontent.com/u/52967?v=2&s=100)](https://github.com/darjeeling)
+[![item4](https://avatars0.githubusercontent.com/u/559952?v=2&s=100)](https://github.com/item4)
+[![raonism](https://avatars0.githubusercontent.com/u/3397808?v=2&s=100)](https://github.com/raonism)
+[![dobestan](https://avatars0.githubusercontent.com/u/4688315?v=2&s=100)](https://github.com/dobestan)
+[![LyuGGang](https://avatars0.githubusercontent.com/u/5120987?v=2&s=100)](https://github.com/LyuGGang)
+[![disjukr](https://avatars0.githubusercontent.com/u/690661?v=2&s=100)](https://github.com/disjukr)
+[![Luavis](https://avatars3.githubusercontent.com/u/1534596?v=2&s=100)](https://github.com/Luavis)
