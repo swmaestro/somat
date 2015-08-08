@@ -1,7 +1,7 @@
 "use strict";
 
 // Catution:
-// please change DEBUG to false before commit 
+// please change DEBUG to false before commit
 
 var DEBUG = false;
 
@@ -62,7 +62,7 @@ for(var key in keyword_meta_data) {
     $("#" + key).attr('data-meta-data-key', key)
     // set click event
     $("#" + key).click(function(e, elem) {
-        
+
         var $target = $(e.target);
 
         e.preventDefault();
@@ -272,19 +272,19 @@ function updateResult(){
 
         tDiv.className += "result"
         var theta = swCenterPos.x - dat[i].x;
-        marker.dist = Math.sin(degToRad(swCenterPos.y)) * Math.sin(degToRad(dat[i].y)) + Math.cos(degToRad(swCenterPos.y))   
+        marker.dist = Math.sin(degToRad(swCenterPos.y)) * Math.sin(degToRad(dat[i].y)) + Math.cos(degToRad(swCenterPos.y))
           * Math.cos(degToRad(dat[i].y)) * Math.cos(degToRad(theta));
         marker.dist = Math.acos(marker.dist);
         marker.dist = radTodeg(marker.dist);
-        marker.dist = marker.dist * 60 * 1.1515;   
+        marker.dist = marker.dist * 60 * 1.1515;
         marker.dist = marker.dist * 1.609344;
         marker.dist = marker.dist * 1000.0;
 
         if(dat[i].except == undefined) {
             tDiv.innerHTML = '<div class="line"></div><h3 class="title">'+dat[i].title+'</h3>' +
-                    '<p class="content">'+dat[i].content+'</p>' + 
+                    '<p class="content">'+dat[i].content+'</p>' +
                     '<div class="link"><a href="' + link +'" target="_blank">길찾기</a> | <a href="#" class="marker-window-link" data-marker-index="' + i +
-                    '">장소보기</a> | ' + parseInt(marker.dist) + 'm | '+dat[i].tag+'</div>';
+                    '">장소보기</a> | ' + parseInt(marker.dist) + 'm (약 '+ parseInt(marker.dist/60) +'분) | '+dat[i].tag+'</div>';
 
             query_result.appendChild(tDiv);
         }
@@ -302,7 +302,7 @@ function updateResult(){
         }
 
         setAnimationMarker(marker);
-        marker.infoWindow.open(map, marker);        
+        marker.infoWindow.open(map, marker);
     });
 
     var pDiv = document.createElement('div');
