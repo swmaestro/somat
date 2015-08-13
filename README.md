@@ -74,4 +74,6 @@
 [![dobestan](https://avatars0.githubusercontent.com/u/4688315?v=2&s=100)](https://github.com/dobestan)
 [![LyuGGang](https://avatars0.githubusercontent.com/u/5120987?v=2&s=100)](https://github.com/LyuGGang)
 [![disjukr](https://avatars0.githubusercontent.com/u/690661?v=2&s=100)](https://github.com/disjukr)
+[![wikibootup](https://avatars2.githubusercontent.com/u/6479173?v=2&s=100)](https://github.com/wikibootup)
+[![devholic](https://avatars1.githubusercontent.com/u/6194958?v=2&s=100)](https://github.com/devholic)
 [![Luavis](https://avatars3.githubusercontent.com/u/1534596?v=2&s=100)](https://github.com/Luavis)
