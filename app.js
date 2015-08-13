@@ -14,6 +14,15 @@ var swCenterPos = {x: 127.044958, y: 37.503553};
 if(DEBUG)
     dataJsonUrl = "http://swmaestro.github.io/somat/somalife.json";
 
+function onDeviceReady() {
+    if (parseFloat(window.device.version) >= 7.0) {
+          document.body.style.marginTop = "20px";
+          // OR do whatever layout you need here, to expand a navigation bar etc
+    }
+}
+// work in ios
+document.addEventListener('deviceready', onDeviceReady, false);
+
 // keyword meta data table
 var keyword_meta_data = {
     'food-korean' : '한식',
