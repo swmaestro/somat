@@ -30,6 +30,7 @@ var keyword_meta_data = {
     'price-normal' : '보통',
     'price-cheap' : '싼',
     'taste-spicy' : '매운',
+    'taste-nomat' : '노맛',
     'etc-mentoring' : '멘토링추천',
     'etc-boolbaek' : '불백',
     'etc-soup' : '국물',
