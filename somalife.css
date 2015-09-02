@@ -7,6 +7,7 @@
 /* custom css */
 html,body{
     height:99%;
+    overflow: hidden;
 }
 
 .no-content {
@@ -22,6 +23,8 @@ html,body{
     padding-left:2em;
     padding-right:2em;
     padding-bottom:2em;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .tag-title {
@@ -72,6 +75,7 @@ a.init:hover, a.init:active, a.init:focus{
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     background: #000;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -141,10 +145,6 @@ a.init:hover, a.init:active, a.init:focus{
 .sidebar-nav > .sidebar-brand a:hover {
     color: #fff;
     background: none;
-}
-
-#query_result {
-    overflow-y: scroll;
 }
 
 .map-info {
