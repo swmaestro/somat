@@ -1,16 +1,15 @@
-# somalife
+# anamlife
 
-* SW Maestro 연수생들을 위한 생활 정보입니다.
-* [swmaestro.github.io/somat](http://swmaestro.github.io/somat)에서 확인하실 수 있습니다.
-* 기존의 somat 프로젝트와 D.CAMP의 [배동여지도](http://dcamp.kr/contents/views/188) 데이터를 기반으로 만들었습니다.
+* 안암 고려대학교 학생/교직원을 위한 생활 정보입니다.
+* [alswhdgus10.github.io/anamlife](http://alwhdgus10.github.io/anamlife)에서 확인하실 수 있습니다.
 * Pull Request 는 언제나 환영합니다.
 
 # 데이터
 
 ### 데이터 추가하기
 ---
-* 데이터는 somalife.json에 저장됩니다.
-* data array의 마지막에 데이터를 추가해주세요. 
+* 데이터는 anamlife.json에 저장됩니다.
+* data array의 마지막에 데이터를 추가해주세요.
 	* **추가하시기 전에 콤마를 꼭 확인해주세요!**
 * data는 다음 형식으로 구성되어 있습니다.
 	* name : 업체명
@@ -42,8 +41,8 @@
 	* \#분식
 	* \#기타
 	* 데이터 소스 (필수)
-		* **앞으로 추가되는 정보는 \#somalife 태그를 달아주세요.**
-		* \#somalife 
+		* **앞으로 추가되는 정보는 \#anamlife 태그를 달아주세요.**
+		* \#somalife
 		* \#somat
 		* \#배동여지도
 	* 가격대
@@ -64,4 +63,4 @@
 	* \#공원
 * 생활
 	* \#병원
-	* \#약국 
+	* \#약국
