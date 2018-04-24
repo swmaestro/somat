@@ -1,6 +1,7 @@
 # anamlife
 
 * 안암 고려대학교 학생/교직원을 위한 생활 정보입니다.
+* 카이스트 경영대학 학생/교직원을 위한 생활 정보입니다.
 * [alswhdgus10.github.io/anamlife](http://alwhdgus10.github.io/anamlife)에서 확인하실 수 있습니다.
 * Pull Request 는 언제나 환영합니다.
 
