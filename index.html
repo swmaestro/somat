@@ -1,68 +1,328 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
+    <meta http-equiv="Expires" content="-1"> 
+    <meta http-equiv="Pragma" content="no-cache"> 
+    <meta http-equiv="Cache-Control" content="No-Cache"> 
     <meta charset="utf-8">
-    <title>somat</title>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>anamlife</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="./somalife.css" rel="stylesheet">
 </head>
+
 <body>
-    <h1>Somat</h1>
-    <h2>소프트웨어 마에스트로 멘티들을 위한 맛집 일람</h2>
-    <h3>멘토링때 식사 하기 적당한곳</h3>
-    <div id="mentoring"></div>
-    <h3>한식</h3>
-    <div id="korean"></div>
-    <h3>중식</h3>
-    <div id="chinese"></div>
-    <h3>일식</h3>
-    <div id="japanese"></div>
-    <h3>음주</h3>
-    <div id="drink"></div>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a>anamlife</a>
+                </li>
+                <div style="height:1px;width:100%;background:#333;margin-bottom:1em"></div>
+                <div>
+               		<p class="tag-title">현재 필터 | <a id="init-param" class="tag init" href="#">초기화</a></p>
+                    <p class="tag-group">    
+                    <span id="current-filter" class="tag"></span>
+                    </p>
+                    <div style="height:1px;width:100%;background:#333;margin-bottom:1em"></div>
+                    <p class="tag-title">음식점</p>
+                    <p class="tag-group">         
+                    <a id="food-korean" class="tag" href="#">#한식</a>
+                    <a id="food-chinese" class="tag" href="#">#중식</a>
+                    <a id="food-japanese" class="tag" href="#">#일식</a>
+                    <a id="food-eng" class="tag" href="#">#양식</a>
+                    <a id="food-fastfood" class="tag" href="#">#패스트푸드</a>
+                    <a id="food-snack" class="tag" href="#">#분식</a>
+                    <a id="food-etc" class="tag" href="#">#기타</a>
+                    </p>
+                    <p class="tag-title">데이터 소스</p>
+                    <p class="tag-group">
+                    <a id="data-sopo" class="tag" href="#">#소포게</a>
+                    <a id="data-anamlife" class="tag" href="#">#anamlife</a>
+                    <a id="data-noname" class="tag" href="#">#익명</a>
+                    </p>
+                    <p class="tag-title">가격대</p>
+                    <p class="tag-group">         
+                    <a id="price-high" class="tag" href="#">#비싼</a>   
+                    <a id="price-normal" class="tag" href="#">#보통</a>   
+                    <a id="price-cheap" class="tag" href="#">#싼</a>
+                    </p>
+                    <p class="tag-title">맛</p>
+                    <p class="tag-group">         
+                    <a id="taste-spicy" class="tag" href="#">#매운</a>
+                    </p>
+                    <p class="tag-title">기타</p>
+                    <p class="tag-group">
+                    <a id="etc-soup" class="tag" href="#">#국물</a>
+                    <a id="etc-24hr" class="tag" href="#">#24시간</a>
+                    </p>
+                </div>
+                <div style="height:1px;width:100%;background:#333;margin-bottom:1em"></div>
+                <div>
+                    <p class="tag-title">문화</p>
+                    <p class="tag-group">         
+                    <a id="culture-movie" class="tag" href="#">#영화관</a>
+                    <a id="culture-sing" class="tag" href="#">#노래방</a>
+                    <a id="culture-park" class="tag" href="#">#공원</a>
+                    </p>
+                </div>
+                <div style="height:1px;width:100%;background:#333;margin-bottom:1em"></div>
+                <div>
+                    <p class="tag-title">생활</p>
+                    <p class="tag-group">         
+                    <a id="life-hospital" class="tag" href="#">#병원</a>
+                    <a id="life-pharmacy" class="tag" href="#">#약국</a>
+					<a id="life-pharmacy" class="tag" href="#">#한의원</a>
+                    </p>
+                </div>
+                <div style="height:2em;"></div>
+            </ul>
+        </div>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div style="width:100%;height:50%;position:relative;">
+            <div id="map" style="width:100%;height:100%;position:absolute;top:0px;left:0px;">
+            </div>
+            <div id="menu-toggle" style="width:3.3em;height:3.3em;position:absolute;top:0px;left:0px;background:rgba(0,0,0,0.5);z-index:100;">
+            <center><span class="glyphicon glyphicon-option-vertical" style="color:#fff;font-size:1.2em;line-height:2.5em;"></span></center>
+            </div>
+            </div>
+            <div id="query_result" class="fill">
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <script type="text/javascript" src="https://apis.daum.net/maps/maps3.js?apikey=d4f327f9b9a1681020492b5ee5c5f787"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Menu Toggle Script -->
     <script>
-    $.ajax({
-        url: './README.md',
-        complete: function (data) {
-            var information = parse(data.responseText);
-            console.log(information);
-            $.each(information, function (type, matList) {
-                var $type = $('#' + type);
-                $.each(matList, function (_, mat) {
-                    var $matName = $('<h4 class="mat-name">').text(mat.name);
-                    var $matFeatureList = $('<ul class="mat-feature-list">');
-                    $.each(mat.featureList, function (_, feature) {
-                        $matFeatureList.append($('<li class="mat-feature">').html(feature));
-                    });
-                    $type.append($('<div class="mat">').append($matName, $matFeatureList));
-                });
+    	"use strict";
+
+        // keyword meta data table
+    	var keyword_meta_data = {
+            'food-korean' : '한식',
+            'food-chinese' : '중식',
+            'food-japanese' : '일식',
+            'food-eng' : '양식',
+            'food-fastfood' : '패스트푸드',
+            'food-snack' : '분식',
+            'food-etc' : '기타',
+            'data-sopo' : '소포게',
+            'data-anamlife' : 'anamlife',
+            'data-noname' : '익명',
+            'price-high' : '비싼',
+            'price-normal' : '보통',
+            'price-cheap' : '싼',
+            'taste-spicy' : '매운',
+            'etc-soup' : '국물',
+            'etc-24hr' : '24시간',
+            'culture-movie' : '영화관',
+            'culture-sing' : '노래방',
+            'culture-park' : '공원',
+            'life-hospital' : '병원',
+            'life-pharmacy' : '약국'
+        };
+
+    	var isLoaded = false;
+    	var queryParam = new Array();
+    	var markers = new Array();
+    	var infowindows = new Array();
+
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        $("#init-param").click(function(e) {
+            e.preventDefault();
+            clearParam();
+        });
+
+        for(var key in keyword_meta_data) {
+
+            // add attribute for find it later
+            $("#" + key).attr('data-meta-data-key', key)
+            // set click event
+            $("#" + key).click(function(e, elem) {
+                
+                var $target = $(e.target);
+
+                e.preventDefault();
+
+                $target.toggleClass("selected");
+                editParam("#" + keyword_meta_data[$target.attr('data-meta-data-key')]);
             });
         }
-    });
-    function parse(readme) {
-        return {
-            mentoring: parseMatList(/멘토링때 식사 하기 적당한곳\s*----\s*((?:.|\r?\n)+)\s+한식\s*----/.exec(readme)[1]),
-            korean: parseMatList(/한식\s*----\s*((?:.|\r?\n)+)\s+중식\s*----/.exec(readme)[1]),
-            chinese: parseMatList(/중식\s*----\s*((?:.|\r?\n)+)\s+일식\s*----/.exec(readme)[1]),
-            japanese: parseMatList(/일식\s*----\s*((?:.|\r?\n)+)\s+음주/.exec(readme)[1]),
-            drink: parseMatList(/음주\s*----\s*((?:.|\r?\n)+)\s+# Contributors/.exec(readme)[1])
+
+        function clearParam(){
+        	if(isLoaded){
+        		queryParam = new Array();
+        		editParam();
+        	}
         }
-    }
-    function parseMatList(matListChunk) {
-        var chunkList = matListChunk.trim().split(/(?:^|\r?\n)\* /g);
-        Array.prototype.shift.call(chunkList); // remove first blank string
-        return $.map(chunkList, function (chunk) {
-            var featureList = chunk.split(/\r?\n/g);
-            return {
-                name: featureList.shift(),
-                featureList: featureList.map(function (feature) {
-                    return parseFeature(feature);
-                })
-            };
+        function editParam(k){
+        	if(isLoaded){
+        		if(k!=null){
+        			var idx = queryParam.indexOf(k);
+            		if(idx==-1){
+            			queryParam.push(k);
+            		}else{
+            			queryParam.splice(idx,1);
+            		}
+        		}
+            	var s = document.getElementById("current-filter");
+            	var txt = "";
+            	for(var i=0;i<queryParam.length;i++){
+            		txt += (queryParam[i]+" ");
+            	}
+            	s.innerHTML = txt;
+            	updateResult();
+            }
+        }
+        function detectmob() { 
+            if( navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)
+            ){ return true; }
+            else { return false; }
+        }
+        function urlSpaceReplace(s){
+            return(s.split(' ').join('%20'));
+        }
+        var isMobile = detectmob();
+        var isLoaded = false;
+        var resultDiv = document.getElementById("query_result");
+        var container = document.getElementById('map');
+        var options = {
+            center: new daum.maps.LatLng(37.593583, 127.046598),
+            level: 5
+        };
+        var map = new daum.maps.Map(container, options);
+        var mapTypeControl = new daum.maps.MapTypeControl();
+        map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+        var zoomControl = new daum.maps.ZoomControl();
+        map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+        var jo, filtered; // json data를 저장할 변수
+        // live : ./anamlife.json
+        // local : https://raw.githubusercontent.com/devholic/somalife/gh-pages/anamlife.json
+        $.getJSON("./anamlife.json", function(data) {
+            jo = data;
+            isLoaded = true;
+            updateResult();
         });
-    }
-    function parseFeature(feature) {
-        feature = feature.substr(3); // cut ' * '
-        return feature.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
-    }
+        function clearResult(){
+        	for (var i = 0; i < markers.length; i++){
+        		markers[i].setMap(null);
+        	}
+        	resultDiv.innerHTML = '';
+        	markers = new Array();
+        }
+        function updateResult(){
+        	clearResult();
+            var dat = new Array();
+            for(var k in jo.data) {
+                var count = 0;
+            	var passed = false;
+            	if(queryParam.length==0){
+            		passed = true;
+            	}else{
+            		for(var i=0;i<queryParam.length;i++){
+                		if(jo.data[k].tag.indexOf(queryParam[i]) != -1){
+                			count++;
+                		}
+                	}
+                }
+                if(passed || count == queryParam.length){
+                	var r = new Object();
+                	r.title = jo.data[k].name;
+               		r.latlng = new daum.maps.LatLng(jo.data[k].y,jo.data[k].x);
+                	r.tag = jo.data[k].tag;
+                	r.content = jo.data[k].content;
+                	r.y = jo.data[k].y;
+                	r.x = jo.data[k].x;
+                	dat.push(r);
+                }
+            }
+            if(dat.length==0){
+            	var nDiv = document.createElement('div');
+            	nDiv.style.cssText = 'text-align: center;position: relative;top: 50%;transform: translateY(-50%);';
+            	nDiv.innerHTML = '<h2>표시할 데이터가 없어요 ㅠㅠ</h2>';
+            	query_result.appendChild(nDiv);
+            }
+            for (var i=0;i<dat.length;i++) {
+                var marker = new daum.maps.Marker({
+                    position: dat[i].latlng
+                });
+
+                marker.setMap(map);
+                markers.push(marker);
+
+                var open_event_name = 'mouseover';
+                var infoWindowOptions = {};
+
+                if(isMobile) {
+                    infoWindowOptions['content'] = '<p class="map-info"><span class="title">'
+                    + dat[i].title + '</span><br>' + '<a href="#result-' + i + '">바로가기</a></p>';
+
+                    infoWindowOptions['removable'] = true;
+                    open_event_name = 'click';
+                }
+                else {
+                    infoWindowOptions['content'] = '<p class="map-info"><span class="title">'
+                    + dat[i].title + '</span><br>' + '<span class="tags">' + dat[i].tag
+                    + '</span></p>';
+                }
+
+                marker.infoWindow = new daum.maps.InfoWindow(infoWindowOptions);
+                marker.datIndex = i
+
+                // open event
+                daum.maps.event.addListener(marker, open_event_name, (function(marker) {
+                    return function() {
+                        marker.infoWindow.open(map, marker);
+                    }
+                })(marker));
+
+                // add close event in desktop view & click event to show info
+                if(!isMobile){
+               		daum.maps.event.addListener(marker, 'mouseout', (function(marker) {
+                    	return function() {
+                        	marker.infoWindow.close();
+                    	}
+                	})(marker));
+
+                    daum.maps.event.addListener(marker, 'click', (function(marker) {
+                        return function() {
+                            window.location.hash = '#result-' + marker.datIndex;
+                        }
+                    })(marker));
+                }
+
+                var tDiv = document.createElement('div');
+
+                tDiv.setAttribute('id', 'result-' + i);
+                var link = 'http://map.daum.net/link/to/'+urlSpaceReplace(dat[i].title)+','+dat[i].y+','+dat[i].x;
+
+                tDiv.className += "result"
+
+                tDiv.innerHTML = '<div class="line"></div><h3 class="title">'+dat[i].title+'</h3>' +
+                        '<p class="content">'+dat[i].content+'</p>' + 
+                        '<div class="link"><a href=' + link +' target="_blank">길찾기</a> | '+dat[i].tag+'</div>';
+                query_result.appendChild(tDiv);
+            }
+            var pDiv = document.createElement('div');
+            pDiv.style.height="2em";
+            query_result.appendChild(pDiv);
+        }
     </script>
 </body>
+
 </html>
